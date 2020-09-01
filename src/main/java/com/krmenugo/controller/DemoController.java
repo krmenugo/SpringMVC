@@ -6,25 +6,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.krmenugo.model.PersonaModel;
-import com.krmenugo.repository.PersonaInterfaceRepo;
+import com.krmenugo.model.PersonModel;
+import com.krmenugo.repository.PersonInterfaceRepo;
 
-// CONTROLLER: REDIRIGIR LA PETICIÓN DEL USUARIO A UNA LÓGICA DE NEGOCIO
+//http://localhost:9898/...
 @Controller
 public class DemoController {
 	
 	@Autowired
-	private PersonaInterfaceRepo repo;
+	private PersonInterfaceRepo repo;
 	
-	@GetMapping("/greeting") // http://localhost:9898/greeting?name=Carmen
+	@GetMapping("/greeting") //greeting?name=?
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-		
-		PersonaModel persona = new PersonaModel();
-		persona.setIdPersona(1);
-		persona.setNombre("Román :3");
-		repo.save(persona);
-		
+		PersonModel personData = new PersonModel();
+			personData.setIdPerson(4);
+			personData.setName("Luis David");
+			repo.save(personData);
 		model.addAttribute("name", name);
+		return "greeting";
+	}
+	
+	@GetMapping("/list")
+	public String list(Model model) {
+		model.addAttribute("persons", repo.findAll());
 		return "greeting";
 	}
 	
