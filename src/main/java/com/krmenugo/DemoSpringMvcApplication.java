@@ -19,6 +19,7 @@ public class DemoSpringMvcApplication extends SpringBootServletInitializer {// i
 	public static void main(String[] args) {
 		SpringApplication.run(DemoSpringMvcApplication.class, args);
 	}
+//	
 //	public void run(String... args) throws Exception{
 //		String pass1 = "user";
 //		String pass2 = "admin";
